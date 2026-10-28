@@ -27,6 +27,30 @@ function showStatus(message, type = "") {
     statusMessage.className = type;
 }
 
+async function deleteNote(noteId, deleteButton) {
+    deleteButton.disabled = true;
+    showStatus("Deleting note...");
+
+    try {
+        await request(`${API_URL}/${noteId}`, {
+            method: "DELETE"
+        });
+
+        currentNotes = currentNotes.filter(
+            (note) => note.id !== noteId
+        );
+
+        displayNotes(currentNotes);
+
+        showStatus("Note deleted successfully.", "success");
+    } catch (error) {
+        showStatus("Unable to delete the note. Please try again.", "error");
+        console.error("Error deleting note:", error);
+
+        deleteButton.disabled = false;
+    }
+}
+
 function displayNotes(notes) {
     notesList.replaceChildren();
 
@@ -45,8 +69,16 @@ function displayNotes(notes) {
         title.textContent = note.title;
         body.textContent = note.body;
 
-        listItem.append(title, body);
-        notesList.appendChild(listItem);
+        const deleteButton = document.createElement("button");
+deleteButton.textContent = "Delete";
+deleteButton.type = "button";
+
+deleteButton.addEventListener("click", () => {
+    deleteNote(note.id, deleteButton);
+});
+
+listItem.append(title, body, deleteButton);
+notesList.appendChild(listItem);
     });
 }
 
