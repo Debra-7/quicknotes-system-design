@@ -1,0 +1,119 @@
+
+/* Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f6f8;
+    color: #222;
+}
+
+header,
+main {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+section {
+    margin-bottom: 24px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2457c5;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #19439d;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Status messages */
+#status {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#status.success {
+    color: #176534;
+    background-color: #e5f6eb;
+}
+
+#status.error {
+    color: #a32121;
+    background-color: #fde8e8;
+}
+
+/* Note form */
+form,
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+form {
+    gap: 16px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Notes list */
+#notes-list {
+    padding-left: 24px;
+}
+
+#notes-list li {
+    margin-bottom: 16px;
+    overflow-wrap: anywhere;
+}
+
+#notes-list h3 {
+    margin-bottom: 4px;
+}
+
+#notes-list p {
+    margin-top: 4px;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    section {
+        padding: 14px;
+    }
+}
